@@ -21,17 +21,28 @@ class _ViewAttendanceState extends State<ViewAttendance> {
   Future viewAttendance() async {
     var url = Uri.parse("https://biomujappback.herokuapp.com/api/attendance/");
     String tok = await getTokenFromStorage();
-    print("~~~~~~~~~~~~~~~~~ $tok");
+    
 
     var response = await http.get(
       url,
       headers: {'Authorization': "TOKEN " + tok},
     );
+    
+     
+    var responseData = json.decode(response.body);
 
-    final responseJson = jsonDecode(response.body);
-
-    print(responseJson.toString());
+    print(responseData);
   }
+  
+  
+  @override
+  void initState() {
+    super.initState();
+    viewAttendance();
+    
+  }
+
+  
 
   @override
   Widget build(BuildContext context) {
