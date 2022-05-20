@@ -26,6 +26,26 @@ class _FingerPrintState extends State<FingerPrint> {
     super.initState();
     init();
   }
+  
+  getLocalValues() async {
+  SharedPreferences pf = await SharedPreferences.getInstance();
+    
+    setState(() {
+    tokenValue = pf.getString('tokenNew');
+    emailid = pf.getString('email');
+  });
+    
+    
+    
+    Future.delayed(const Duration(seconds: 1), () {
+markAttendance();
+
+
+  
+
+});
+
+  }
 
   init() async {
     await _getAvailableBiometrics();
@@ -86,7 +106,7 @@ class _FingerPrintState extends State<FingerPrint> {
           ));
       authorized = authenticated;
       if (authorized == authenticated) {
-        markAttendance();
+        getLocalValues();
       }
       setState(() {
         _isAuthenticating = false;
