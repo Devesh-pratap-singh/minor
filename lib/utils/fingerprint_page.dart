@@ -57,9 +57,9 @@ markAttendance();
     String url = "https://biomujappback.herokuapp.com/api/attendance/";
 
     var response = await http.post(Uri.parse(url), headers: {
-      'Authorization': "TOKEN " + "4a41d76ccff38b0f3bdf76c5a7b733bc79b46db8"
+      'Authorization': "TOKEN " + tokenValue
     }, body: {
-      'email': "Harsh",
+      'email': emailid,
     });
 
     print(response.body.toString());
